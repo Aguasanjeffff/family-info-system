@@ -7,6 +7,7 @@ const FamilyTree = () => {
   const [family, setFamily] = useState([]);
   const [selectedMember, setSelectedMember] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     fetchFamily();
@@ -16,9 +17,11 @@ const FamilyTree = () => {
     try {
       const res = await api.get('/family');
       setFamily(res.data.data);
+      setError(null);
       setLoading(false);
     } catch (error) {
       console.error('Error fetching family:', error);
+      setError('Failed to load family members. Please try again later.');
       setLoading(false);
     }
   };
@@ -41,6 +44,23 @@ const FamilyTree = () => {
         <div className="text-center">
           <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-blue-600 mx-auto mb-4"></div>
           <div className="text-xl text-gray-600">Loading Family Tree...</div>
+        </div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="min-h-screen bg-gradient-to-b from-indigo-50 to-white py-16 px-4 flex justify-center items-center">
+        <div className="text-center max-w-md">
+          <div className="text-6xl mb-4">😔</div>
+          <div className="text-xl text-red-600 mb-4">{error}</div>
+          <button
+            onClick={fetchFamily}
+            className="bg-blue-600 hover:bg-blue-700 text-white font-semibold py-2 px-6 rounded transition duration-300"
+          >
+            Try Again
+          </button>
         </div>
       </div>
     );
