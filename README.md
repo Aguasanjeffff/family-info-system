@@ -118,6 +118,23 @@ npm run dev
 
 The backend will run on `http://localhost:5000`
 
+### Seeding Sample Data (Optional)
+
+To populate the database with sample family members:
+
+```bash
+npm run seed
+```
+
+This will create:
+- 2 Admin users (Father and Mother)
+- 5 Member users (Children)
+
+**Default credentials:**
+- Father: `john@aguasan.com` / `password123`
+- Mother: `maria@aguasan.com` / `password123`
+- Children: `[name]@aguasan.com` / `password123`
+
 ### Frontend Setup
 
 1. Navigate to frontend directory:
@@ -247,12 +264,17 @@ npm run preview # Preview production build
 
 ## Security
 
-- Passwords are hashed using bcryptjs
-- JWT tokens for authentication
-- Protected routes with middleware
-- Role-based access control
-- Input validation
-- Error handling
+- **Password Security**: Passwords are hashed using bcryptjs with salt rounds
+- **Authentication**: JWT tokens for stateless authentication
+- **Protected Routes**: Middleware-based route protection
+- **Role-Based Access Control**: Admin and member roles with specific permissions
+- **Rate Limiting**: 
+  - General API routes: 100 requests per 15 minutes per IP
+  - Auth routes: 5 login/register attempts per 15 minutes per IP
+- **CORS Protection**: Configurable origin restriction for production
+- **Input Validation**: Both frontend and backend validation
+- **Error Handling**: Comprehensive error handling with proper status codes
+- **ReDoS Protection**: Safe email regex pattern to prevent Regular Expression Denial of Service
 
 ## Contributing
 
