@@ -1,5 +1,5 @@
 import { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { AuthContext } from '../context/AuthContext';
 
 const AuthForm = ({ type }) => {
@@ -189,16 +189,16 @@ const AuthForm = ({ type }) => {
           {type === 'login' ? (
             <p className="text-gray-600">
               Don't have an account?{' '}
-              <a href="/register" className="text-blue-600 hover:text-blue-800">
+              <Link to="/register" className="text-blue-600 hover:text-blue-800">
                 Register
-              </a>
+              </Link>
             </p>
           ) : (
             <p className="text-gray-600">
               Already have an account?{' '}
-              <a href="/login" className="text-blue-600 hover:text-blue-800">
+              <Link to="/login" className="text-blue-600 hover:text-blue-800">
                 Login
-              </a>
+              </Link>
             </p>
           )}
         </div>
