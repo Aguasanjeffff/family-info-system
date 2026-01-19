@@ -36,6 +36,15 @@ const AuthForm = ({ type }) => {
     setLoading(true);
     setMessage('');
 
+    // Basic frontend validation for register
+    if (type === 'register') {
+      if (formData.position.row < 1 || formData.position.order < 1) {
+        setMessage('Position row and order must be at least 1');
+        setLoading(false);
+        return;
+      }
+    }
+
     let result;
     if (type === 'login') {
       result = await login(formData.email, formData.password);

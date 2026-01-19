@@ -37,8 +37,11 @@ const FamilyTree = () => {
 
   if (loading) {
     return (
-      <div className="flex justify-center items-center h-screen">
-        <div className="text-2xl text-gray-600">Loading...</div>
+      <div className="min-h-screen bg-gradient-to-b from-indigo-50 to-white py-16 px-4 flex justify-center items-center">
+        <div className="text-center">
+          <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-blue-600 mx-auto mb-4"></div>
+          <div className="text-xl text-gray-600">Loading Family Tree...</div>
+        </div>
       </div>
     );
   }
